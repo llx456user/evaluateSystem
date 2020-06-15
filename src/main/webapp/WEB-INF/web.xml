@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+    <display-name>evaluateSystem</display-name>
+    <jsp-config>  
+        <taglib>  
+            <!-- 配置标签的引用地址 JSP页面中引用时使用-->  
+            <taglib-uri>mobai.com/el-common</taglib-uri>  
+            <!-- 配置标签的TLD文件地址 -->  
+            <taglib-location>/WEB-INF/lib/mobai-el-common.tld</taglib-location>  
+        </taglib>  
+    </jsp-config>  
+    <!-- context -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/spring/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- listener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>ch.qos.logback.classic.selector.servlet.ContextDetachingSCL</listener-class>
+    </listener>
+
+    <!-- filter -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+         <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <!-- filter-mapping -->
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- servlet -->
+    <servlet>
+        <servlet-name>SpringMVCServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                WEB-INF/spring/appServlet/servlet-context.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <!-- servlet-mapping -->
+    <servlet-mapping>
+        <servlet-name>SpringMVCServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+ <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+<error-page> 
+    <error-code>401</error-code> 
+    <location>/sysError</location> 
+</error-page>
+
+<error-page> 
+    <error-code>404</error-code> 
+    <location>/sysError</location> 
+</error-page>
+
+<error-page> 
+    <error-code>500</error-code> 
+    <location>/sysError</location> 
+</error-page>
+</web-app>

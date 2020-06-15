@@ -1,0 +1,129 @@
+{
+  "class": "go.GraphLinksModel",
+  "copiesArrays": true,
+  "copiesArrayObjects": true,
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+    {
+      "key": 1,
+      "category": "0",
+      "type": "sql",
+      "id": "3",
+      "name": "sql1",
+      "outServices": [
+        {
+          "name": "sql1",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "-511 246"
+    },
+    {
+      "key": 3,
+      "category": "1",
+      "modelVersion": "V1.0",
+      "modelContext": "",
+      "modelCategory": 2,
+      "id": 41,
+      "name": "≤‚ ‘ƒ£–Õ",
+      "inServices": [
+        {
+          "name": "p1",
+          "color": "#3C60A1",
+          "unit": "not_array",
+          "modelPortType": "int",
+          "source": null
+        },
+        {
+          "name": "p2",
+          "color": "red",
+          "unit": "not_array",
+          "modelPortType": "long",
+          "source": null
+        }
+      ],
+      "outServices": [
+        {
+          "name": "o1",
+          "color": "red",
+          "unit": "not_array",
+          "modelPortType": "long",
+          "source": null
+        }
+      ],
+      "loc": "-64.5 153.90909090909088"
+    },
+    {
+      "key": 4,
+      "category": "2",
+      "type": "map",
+      "text": "µÿÕº",
+      "inServices": [
+        {
+          "name": "input-x",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "input-y",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "260.26142374915395 310.76142374915395"
+    },
+    {
+      "key": -4,
+      "category": "0",
+      "type": "file",
+      "id": "13",
+      "name": "≤‚ ‘2.xlsx",
+      "outServices": [
+        {
+          "name": "filepath",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "-506 43"
+    },
+    {
+      "key": -5,
+      "category": "0",
+      "type": "file",
+      "id": "14",
+      "name": "11.xlsx",
+      "outServices": [
+        {
+          "name": "filepath",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "-136 416"
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": 1,
+      "to": 3,
+      "fromPort": "sql1",
+      "toPort": "p2"
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "fromPort": "o1",
+      "toPort": "input-x"
+    },
+    {
+      "from": -4,
+      "to": 3,
+      "fromPort": "filepath",
+      "toPort": "p1"
+    },
+    {
+      "from": -5,
+      "to": 4,
+      "fromPort": "filepath",
+      "toPort": "input-y"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.DatasourceChildfileTitleMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.DatasourceChildfileTitle" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="child_file_id" property="childFileId" jdbcType="VARCHAR" />
+    <result column="filetitle_id" property="filetitleId" jdbcType="INTEGER" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, child_file_id, filetitle_id, create_uid, create_time, update_uid, update_time, 
+    isdelete
+  </sql>
+</mapper>

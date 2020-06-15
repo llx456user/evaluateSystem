@@ -1,0 +1,16 @@
+﻿{
+  "class": "go.GraphLinksModel",
+  "copiesArrays": true,
+  "copiesArrayObjects": true,
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+    {"key":0, "category":"0", "type":"sql", "id":"3", "name":"sql1", "outServices":[ {"name":"id", "color":"#3C60A1"} ], "loc":"-366 -333"},
+    {"key":1, "category":"0", "type":"sql", "id":"4", "name":"sql2", "outServices":[ {"name":"id", "color":"#3C60A1"} ], "loc":"-367 -46"},
+    {"key":2, "category":"2", "type":"bar", "text":"", "inServices":[ {"name":"input-x", "color":"#3C60A1"},{"name":"input-y", "color":"#3C60A1"} ], "loc":"66.26142374915398 -219.23857625084602"}
+  ],
+  "linkDataArray": [
+    {"from":0, "to":2, "fromPort":"id", "toPort":"input-x"},
+    {"from":1, "to":2, "fromPort":"id", "toPort":"input-y"}
+  ]
+}

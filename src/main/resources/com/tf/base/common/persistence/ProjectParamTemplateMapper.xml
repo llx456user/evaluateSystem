@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ProjectParamTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ProjectParamTemplate" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="param_name" property="paramName" jdbcType="VARCHAR" />
+    <result column="project_param_id" property="projectParamId" jdbcType="INTEGER" />
+    <result column="project_param_name" property="projectParamName" jdbcType="VARCHAR" />
+    <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+    <result column="param_type" property="paramType" jdbcType="VARCHAR" />
+    <result column="node_id" property="nodeId" jdbcType="INTEGER" />
+    <result column="node_key" property="nodeKey" jdbcType="INTEGER" />
+    <result column="is_self_defined" property="isSelfDefined" jdbcType="INTEGER" />
+    <result column="group_template_data" property="groupTemplateData" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, project_id, index_id, param_name, project_param_id, project_param_name, param_value,
+    param_type, node_id, node_key, is_self_defined, group_template_data
+  </sql>
+</mapper>

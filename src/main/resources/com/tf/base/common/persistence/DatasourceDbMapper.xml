@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.DatasourceDbMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.DatasourceDb" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_name" property="sourceName" jdbcType="VARCHAR" />
+    <result column="source_type" property="sourceType" jdbcType="VARCHAR" />
+    <result column="db_type" property="dbType" jdbcType="TINYINT" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tf.base.common.domain.DatasourceDb" extends="BaseResultMap" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <result column="config" property="config" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, source_name, source_type, db_type, create_uid, create_time, update_uid, update_time, 
+    isdelete
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    config
+  </sql>
+
+  <select id="selectDbType" resultMap="BaseResultMap">
+    select *  from datasource_db WHERE isdelete=0;
+
+  </select>
+</mapper>

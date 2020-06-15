@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.DatasetFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.DatasetField" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="field_id" property="fieldId" jdbcType="INTEGER" />
+    <result column="field_size" property="fieldSize" jdbcType="INTEGER" />
+    <result column="rule_id" property="ruleId" jdbcType="INTEGER" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <!-- <resultMap id="ResultMapWithBLOBs" type="com.tf.base.common.domain.DatasetFieldWithBLOBs" extends="BaseResultMap" > -->
+    <!--
+      WARNING - @mbggenerated
+    -->
+   <!--  <result column="field_name" property="fieldName" jdbcType="VARBINARY" />
+    <result column="field_type" property="fieldType" jdbcType="VARBINARY" />
+    <result column="field_remarks" property="fieldRemarks" jdbcType="VARBINARY" />
+    <result column="field_condition" property="fieldCondition" jdbcType="VARBINARY" />
+    <result column="field_value" property="fieldValue" jdbcType="VARBINARY" />
+  </resultMap> -->
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, field_id, field_size, rule_id, create_uid, create_time, update_uid, update_time, 
+    isdelete
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    field_name, field_type, field_remarks, field_condition, field_value
+  </sql>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.AssessIndexRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.AssessIndexRule" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="assess_id" property="assessId" jdbcType="INTEGER" />
+    <result column="index_para_id" property="indexParaId" jdbcType="INTEGER" />
+    <result column="index_field_id" property="indexFieldId" jdbcType="INTEGER" />
+    <result column="from_model" property="fromModel" jdbcType="INTEGER" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, assess_id, index_para_id, index_field_id, from_model, create_uid, create_time, 
+    update_uid, update_time, isdelete
+  </sql>
+</mapper>

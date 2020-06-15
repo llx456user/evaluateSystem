@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.IndexNodeProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.IndexNodeProcess" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="index_process_id" property="indexProcessId" jdbcType="INTEGER" />
+    <result column="node_status" property="nodeStatus" jdbcType="INTEGER" />
+    <result column="node_key" property="nodeKey" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="node_input_param" property="nodeInputParam" jdbcType="VARCHAR" />
+    <result column="node_output_param" property="nodeOutputParam" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, index_process_id, node_status, node_key, file_name, file_path, create_uid, create_time, 
+    update_uid, update_time, isdelete,node_input_param, node_output_param
+  </sql>
+
+  <select id="getNodeProcess"  parameterType="java.util.Map" resultMap="BaseResultMap">
+     SELECT * FROM index_node_process WHERE index_process_id = (SELECT id FROM index_info_process WHERE index_id = #{indexId} AND process_type = 0 AND isdelete = 0
+	 ) and node_key=#{nodeKey}
+  </select>
+
+  <select id="getNodeProcessByBusinessId"  parameterType="java.util.Map" resultMap="BaseResultMap">
+  SELECT id,node_input_param FROM index_node_process WHERE index_process_id = (SELECT id FROM index_info_process WHERE index_id = #{indexId} AND process_type = 1 AND isdelete = 0
+	 AND business_id =#{businessId} )  and node_key=#{nodeKey} LIMIT 1
+</select>
+</mapper>

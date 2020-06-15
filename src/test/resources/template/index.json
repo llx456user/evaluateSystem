@@ -1,0 +1,238 @@
+﻿{
+  "class": "go.GraphLinksModel",
+  "copiesArrays": true,
+  "copiesArrayObjects": true,
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+    {
+      "key": 0,
+      "category": "1",
+      "id": 3019,
+      "name": "测试1",
+      "inServices": [
+        {
+          "name": "a",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*b",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "bLen",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*c.c1",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*c.c2",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "cLen",
+          "color": "#3C60A1"
+        }
+      ],
+      "outServices": [
+        {
+          "name": "d",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*e",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "eLen",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*f.c1",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "*f.c2",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "fLen",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "-49.500000000000085 -66.09090909090958"
+    },
+    {
+      "key": 1,
+      "category": "2",
+      "type": "line",
+      "text": "折线图",
+      "inServices": [
+        {
+          "name": "input-x",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "input-y",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "283.26142374915423 -188.23857625084602"
+    },
+    {
+      "key": 2,
+      "category": "2",
+      "type": "scatter",
+      "text": "散点图",
+      "inServices": [
+        {
+          "name": "input-x",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "input-y",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "539.2614237491531 -133.23857625084605"
+    },
+    {
+      "text": "2",
+      "category": "3",
+      "key": -1,
+      "loc": "-379.00000000000006 -141"
+    },
+    {
+      "key": 4,
+      "category": "0",
+      "filetype": "child",
+      "id": 15,
+      "name": "测试1",
+      "outServices": [
+        {
+          "name": "b",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "c1",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "c2",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "-394 15.000000000000028"
+    },
+    {
+      "key": 5,
+      "category": "2",
+      "type": "bar",
+      "text": "柱状图",
+      "inServices": [
+        {
+          "name": "input-x",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "input-y",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "557.2614237491534 82.76142374915396"
+    },
+    {
+      "key": 6,
+      "category": "2",
+      "type": "pie",
+      "text": "饼图",
+      "inServices": [
+        {
+          "name": "input-x",
+          "color": "#3C60A1"
+        },
+        {
+          "name": "input-y",
+          "color": "#3C60A1"
+        }
+      ],
+      "loc": "237.26142374915395 117.76142374915398"
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": 0,
+      "to": 2,
+      "fromPort": "*f.c1",
+      "toPort": "input-x"
+    },
+    {
+      "from": 0,
+      "to": 2,
+      "fromPort": "*f.c2",
+      "toPort": "input-y"
+    },
+    {
+      "from": 0,
+      "to": 1,
+      "fromPort": "*e",
+      "toPort": "input-x"
+    },
+    {
+      "from": 0,
+      "to": 1,
+      "fromPort": "*f.c1",
+      "toPort": "input-y"
+    },
+    {
+      "from": -1,
+      "to": 0,
+      "fromPort": "R",
+      "toPort": "a"
+    },
+    {
+      "from": 4,
+      "to": 0,
+      "fromPort": "b",
+      "toPort": "*b"
+    },
+    {
+      "from": 4,
+      "to": 0,
+      "fromPort": "c1",
+      "toPort": "*c.c1"
+    },
+    {
+      "from": 4,
+      "to": 0,
+      "fromPort": "c2",
+      "toPort": "*c.c2"
+    },
+    {
+      "from": 0,
+      "to": 6,
+      "fromPort": "*f.c1",
+      "toPort": "input-x"
+    },
+    {
+      "from": 0,
+      "to": 6,
+      "fromPort": "*f.c2",
+      "toPort": "input-y"
+    },
+    {
+      "from": 0,
+      "to": 5,
+      "fromPort": "*f.c1",
+      "toPort": "input-x"
+    },
+    {
+      "from": 0,
+      "to": 5,
+      "fromPort": "*f.c2",
+      "toPort": "input-y"
+    }
+  ]
+}

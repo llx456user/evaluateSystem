@@ -1,0 +1,614 @@
+[
+  {
+    "deep": 0,
+    "key": -1,
+    "category": 3,
+    "text": "2",
+    "loc": "-379.00000000000006 -141",
+    "outLinks": [
+      {
+        "outPort": "R",
+        "toPort": "a",
+        "toNode": {
+          "deep": 1,
+          "id": 3019,
+          "key": 0,
+          "category": 1,
+          "name": "≤‚ ‘1",
+          "loc": "-49.500000000000085 -66.09090909090958",
+          "inLinks": [
+            {"inPort": "a"},
+            {"inPort": "*b"},
+            {"inPort": "*c.c1"},
+            {"inPort": "*c.c2"}
+          ],
+          "outLinks": [
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*e",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "deep": 0,
+    "id": 15,
+    "key": 4,
+    "category": 0,
+    "name": "≤‚ ‘1",
+    "fileType": "child",
+    "loc": "-394 15.000000000000028",
+    "outLinks": [
+      {
+        "outPort": "b",
+        "toPort": "*b",
+        "toNode": {
+          "deep": 1,
+          "id": 3019,
+          "key": 0,
+          "category": 1,
+          "name": "≤‚ ‘1",
+          "loc": "-49.500000000000085 -66.09090909090958",
+          "inLinks": [
+            {"inPort": "a"},
+            {"inPort": "*b"},
+            {"inPort": "*c.c1"},
+            {"inPort": "*c.c2"}
+          ],
+          "outLinks": [
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*e",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "outPort": "c1",
+        "toPort": "*c.c1",
+        "toNode": {
+          "deep": 1,
+          "id": 3019,
+          "key": 0,
+          "category": 1,
+          "name": "≤‚ ‘1",
+          "loc": "-49.500000000000085 -66.09090909090958",
+          "inLinks": [
+            {"inPort": "a"},
+            {"inPort": "*b"},
+            {"inPort": "*c.c1"},
+            {"inPort": "*c.c2"}
+          ],
+          "outLinks": [
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*e",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "outPort": "c2",
+        "toPort": "*c.c2",
+        "toNode": {
+          "deep": 1,
+          "id": 3019,
+          "key": 0,
+          "category": 1,
+          "name": "≤‚ ‘1",
+          "loc": "-49.500000000000085 -66.09090909090958",
+          "inLinks": [
+            {"inPort": "a"},
+            {"inPort": "*b"},
+            {"inPort": "*c.c1"},
+            {"inPort": "*c.c2"}
+          ],
+          "outLinks": [
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 2,
+                "category": 2,
+                "type": "scatter",
+                "text": "…¢µ„Õº",
+                "loc": "539.2614237491531 -133.23857625084605",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*e",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 1,
+                "category": 2,
+                "type": "line",
+                "text": "’€œﬂÕº",
+                "loc": "283.26142374915423 -188.23857625084602",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 6,
+                "category": 2,
+                "type": "pie",
+                "text": "±˝Õº",
+                "loc": "237.26142374915395 117.76142374915398",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c1",
+              "toPort": "input-x",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            },
+            {
+              "outPort": "*f.c2",
+              "toPort": "input-y",
+              "toNode": {
+                "deep": 2,
+                "key": 5,
+                "category": 2,
+                "type": "bar",
+                "text": "÷˘◊¥Õº",
+                "loc": "557.2614237491534 82.76142374915396",
+                "inLinks": [
+                  {"inPort": "input-x"},
+                  {"inPort": "input-y"}
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.IndexInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.IndexInfo" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="index_name" property="indexName" jdbcType="VARCHAR" />
+    <result column="index_categoryid" property="indexCategoryid" jdbcType="INTEGER" />
+    <result column="index_complete" property="indexComplete" jdbcType="TINYINT" />
+    <result column="index_version" property="indexVersion" jdbcType="VARCHAR" />
+    <result column="index_content" property="indexContent" jdbcType="VARCHAR" />
+    <result column="index_data" property="indexData" jdbcType="VARCHAR" />
+    <result column="index_formwork_data" property="indexFormworkData" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="visible_child" property="visibleChild" jdbcType="BOOLEAN" />
+  </resultMap>
+  <!-- <resultMap id="ResultMapWithBLOBs" type="com.tf.base.common.domain.IndexInfoWithBLOBs" extends="BaseResultMap" > -->
+    <!--
+      WARNING - @mbggenerated
+    -->
+   <!--  <result column="index_formwork_data" property="indexFormworkData" jdbcType="LONGVARCHAR" />
+    <result column="index_content" property="indexContent" jdbcType="LONGVARCHAR" />
+    <result column="index_data" property="indexData" jdbcType="LONGVARCHAR" />
+  </resultMap> -->
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, index_name, index_categoryid, index_complete, index_version, create_uid, create_time,
+    update_uid, update_time, isdelete,visible_child
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    index_formwork_data, index_content, index_data
+  </sql>
+
+  <sql id="where">
+    a.isdelete = 0
+    <if test="params.categoryId != null and params.categoryId != ''">
+      and a.index_categoryid=#{params.categoryId}
+    </if>
+    <if test="params.modelName != null and params.modelName != ''">
+      and a.index_name like concat('%',#{params.modelName},'%')
+    </if>
+    <if test="params.modelContent != null and params.modelContent != ''">
+      and a.index_content like concat('%',#{params.modelContent},'%')
+    </if>
+  </sql>
+
+  <select id="countExistIndexName" resultType="java.lang.Integer">
+    SELECT count(1) from index_info  indexInfo where 1=1 and indexInfo.index_name=#{indexName}
+    <if test="id != null" >
+      <![CDATA[
+            and id <> #{id}
+        ]]>
+    </if>
+    and index_name = #{name}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT <include refid="Base_Column_List"/>,<include refid="Blob_Column_List"/> from index_info a
+    <where>
+      <include refid="where"></include>
+    </where>
+    order by id desc
+    limit #{start},#{params.rows}
+  </select>
+
+  <select id="getCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    SELECT count(1) from index_info a
+    <where>
+      <include refid="where"></include>
+    </where>
+  </select>
+
+  <update id="deleteByCategoryId" parameterType="java.lang.Integer">
+    update index_info set isdelete=1 where index_categoryid=#{value}
+  </update>
+
+  <select id="selectIndexName"  parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT  index_name from index_info where index_name=#{map.indexName}
+  </select>
+  <select id="selectIndexList"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT  * from index_info where index_name=#{indexName}
+  </select>
+
+
+  <update id="updateIndexContent"  parameterType="java.lang.String" >
+    update  index_info set  index_content=#{indexContent}  where index_name=#{indexName}
+  </update>
+
+
+  <select id="selectIndexNamebykey"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT  index_name from index_info where id=#{indexid}
+  </select>
+
+</mapper>

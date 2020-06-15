@@ -1,0 +1,10 @@
+{
+  "-1": {
+    "R": "-1 out R as 0 in a"
+  },
+  "4": {
+    "b": "4 out b as 0 in *b",
+    "c1": "4 out c1 as 0 in *c.c1",
+    "c2": "4 out c2 as 0 in *c.c2"
+  }
+}

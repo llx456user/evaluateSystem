@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ProjectParamTemplateValueMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ProjectParamTemplateValue" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="data_name" property="dataName" jdbcType="VARCHAR" />
+    <result column="data_comment" property="dataComment" jdbcType="VARCHAR" />
+    <result column="project_param_id" property="projectParamId" jdbcType="INTEGER" />
+    <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+    <result column="param_type" property="paramType" jdbcType="VARCHAR" />
+    <result column="param_suit_number" property="paramSuitNumber" jdbcType="INTEGER" />
+    <result column="data_template_number" property="dataTemplateNumber" jdbcType="INTEGER" />
+    <result column="group_data_name" property="groupDataName" jdbcType="VARCHAR" />
+    <result column="group_data_comment" property="groupDataComment" jdbcType="VARCHAR" />
+    <result column="group_param_suit_number" property="groupParamSuitNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, project_id, data_name, data_comment, project_param_id, param_value, param_type,param_suit_number,data_template_number,group_data_name,group_data_comment,group_param_suit_number
+  </sql>
+
+  <select id="queryCount" parameterType="com.tf.base.common.domain.ProjectParamTemplateValue" resultType="int">
+    select count(DISTINCT(data_name)) from project_param_template_value a
+    <where>
+      <include refid="where"></include>
+    </where>
+  </select>
+
+  <select id="queryMaxSuitCount" parameterType="java.lang.Integer" resultType="int">
+    SELECT
+    IFNULL(max(param_suit_number),0)
+    from project_param_template_value
+    WHERE project_id = #{projectId}
+  </select>
+
+  <select id="queryGroupMaxDataTemplateSuitCount" parameterType="java.lang.Integer" resultType="int">
+    SELECT
+    IFNULL(max(group_param_suit_number),0)
+    from project_param_template_value
+    WHERE project_id = #{projectId}
+  </select>
+
+  <select id="queryMaxDataTemplateSuitCount" parameterType="java.lang.Integer" resultType="int">
+    SELECT
+    IFNULL(max(param_suit_number),0)
+    from project_param_template_value
+    WHERE 1=1
+    and project_id = #{projectId}
+    and data_template_number = #{dataTemplateNumber}
+    and group_param_suit_number = #{groupParamSuitNumber}
+  </select>
+
+  <select id="getGroupDataName" parameterType="java.lang.Integer" resultType="string">
+    SELECT
+    DISTINCT
+    group_data_name
+    from project_param_template_value
+    WHERE 1=1
+    and project_id = #{projectId}
+    and group_param_suit_number = #{groupParamSuitNumber}
+    limit 1
+  </select>
+
+  <select id="listDataName" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  SELECT
+  data_name
+  FROM project_param_template_value
+  WHERE 1=1
+  and project_id = #{projectId}
+  and data_template_number = #{dataTemplateNumber}
+  and group_param_suit_number = #{groupParamSuitNumber}
+  GROUP BY param_suit_number
+  ORDER BY param_suit_number
+  </select>
+
+  <select id="queryList" parameterType="com.tf.base.project.domain.ProjectInfoParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+     from project_param_template_value a
+    <where>
+      <include refid="where"></include>
+    </where>
+    GROUP BY a.data_name,a.data_comment,a.param_suit_number
+    ORDER BY a.param_suit_number
+    limit #{start},#{params.rows}
+  </select>
+
+  <select id="queryGroupDataTemplateList" parameterType="com.tf.base.project.domain.ProjectInfoParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+     from project_param_template_value a
+    <where>
+      <include refid="where_group"></include>
+    </where>
+    GROUP BY a.data_name,a.data_comment,a.param_suit_number
+    ORDER BY a.param_suit_number
+  </select>
+
+  <select id="listGroupDataTemplate" parameterType="com.tf.base.project.domain.ProjectInfoParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+     from project_param_template_value a
+    where 1=1
+    and a.project_id = #{params.projectId}
+    <if test="params.dataName != null and params.dataName != ''">
+      and a.group_data_name like concat('%',#{params.dataName},'%')
+    </if>
+    AND a.group_param_suit_number is not NULL
+    GROUP BY a.group_data_name,a.group_data_comment,a.group_param_suit_number
+    ORDER BY a.group_param_suit_number
+  </select>
+
+  <select id="listGroupTemplateInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    DISTINCT
+    data_name,
+    param_suit_number
+    FROM project_param_template_value
+    WHERE project_id = #{projectId}
+    AND data_template_number = #{dataTemplateNumber}
+  </select>
+
+  <sql id="where">
+    a.project_id = #{params.projectId}
+    <if test="params.dataName != null and params.dataName != ''">
+      and a.data_name like concat('%',#{params.dataName},'%')
+    </if>
+    AND a.group_param_suit_number is NULL
+  </sql>
+
+  <sql id="where_group">
+    a.project_id = #{params.projectId}
+    and a.data_template_number = #{params.dataTemplateNumber}
+    and a.group_param_suit_number = #{params.groupDataTemplateNumber}
+  </sql>
+
+</mapper>

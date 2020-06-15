@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.TempletInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.TempletInfo" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="templet_name" property="templetName" jdbcType="VARCHAR" />
+    <result column="templet_categoryid" property="templetCategoryid" jdbcType="INTEGER" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    
+    <result column="templet_content" property="templetContent" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, templet_name, templet_categoryid, create_uid, create_time, update_uid, update_time, 
+    isdelete
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    templet_formwork_data, templet_content, templet_data
+  </sql>
+  
+  <insert id="templetSave" parameterType="com.tf.base.common.domain.TempletInfo">
+    INSERT templet_info(templet_name,templet_content,templet_categoryid,isdelete) VALUES (#{params.templetName},#{params.templetContent},#{params.templetCategoryid},0)
+  </insert>
+  
+  <select id="queryList" resultMap="BaseResultMap" parameterType="com.tf.base.platform.domain.TempletInfoParams">
+    SELECT <include refid="Base_Column_List"/>,<include refid="Blob_Column_List"/> from templet_info a
+    <where>
+      <include refid="where"></include>
+    </where>
+    order by id desc
+    limit #{start},#{params.rows}
+  </select>
+
+  <select id="queryCount" resultType="java.lang.Integer" parameterType="com.tf.base.platform.domain.TempletInfoParams">
+    SELECT count(1) from templet_info a
+    <where>
+      <include refid="where"></include>
+    </where>
+  </select>
+  
+   <update id="deleteByCategoryId" parameterType="java.lang.Integer">
+    update templet_info set isdelete=1 where templet_categoryid=#{categoryId}
+  </update>
+  
+   <sql id="where">
+    a.isdelete = 0
+    <if test="params.categoryId != null and params.categoryId != ''">
+      and a.templet_categoryid=#{params.categoryId}
+    </if>
+    <if test="params.templetName != null and params.templetName != ''">
+      and a.templet_name like concat('%',#{params.templetName},'%')
+    </if>
+     <if test="params.templetContent != null and params.templetContent != ''">
+       and a.templet_content like concat('%',#{params.templetContent},'%')
+     </if>
+  </sql>
+
+  <insert id="insertData"  parameterType="java.lang.String" >
+
+    INSERT templet_info(templet_name,templet_data) VALUES (#{tplName},#{indexList})
+
+  </insert>
+
+  <select id="selectTemplet" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * from templet_info where templet_name=#{tplName}
+  </select>
+
+  <update id="updateTemplet" parameterType="java.lang.String">
+    update templet_info set templet_data=#{index} where templet_name=#{tplName}
+  </update>
+</mapper>

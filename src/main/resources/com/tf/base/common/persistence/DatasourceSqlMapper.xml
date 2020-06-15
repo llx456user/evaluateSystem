@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.DatasourceSqlMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.DatasourceSql" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="datasource_id" property="datasourceId" jdbcType="INTEGER" />
+    <result column="sql_name" property="sqlName" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    
+     <result column="sql_str" property="sqlStr" jdbcType="VARCHAR" />
+      <result column="config" property="config" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, datasource_id, sql_name, create_uid, create_time, update_uid, update_time, isdelete,sql_str,config
+  </sql>
+  
+  <select id="queryCount" parameterType="com.tf.base.datasource.domain.DatasourceSqlParams" resultType="int">
+  	select count(*) from datasource_sql a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  </select>
+  <select id="queryList" parameterType="com.tf.base.datasource.domain.DatasourceSqlParams" 
+   resultType="com.tf.base.common.domain.DatasourceSql">
+  	select a.id,a.datasource_id as datasourceId,a.sql_name as sqlName,a.sql_str as sqlStr,a.config,
+  	a.update_time as updateTime
+  	,b.source_name as sourceName from datasource_sql a LEFT JOIN datasource_db b ON a.datasource_id=b.id
+  	<where>
+  		<include refid="wheretwo"></include>
+  	</where>
+  	order by id desc
+  	limit #{start},#{params.rows}
+  </select>
+  
+  <sql id="where">
+  	a.isdelete = 0
+  	<if test="params.datasourceId != null and params.datasourceId != ''">
+  	and a.datasource_id=#{params.datasourceId}
+  	</if>
+  	<if test="params.sqlName != null and params.sqlName != ''">
+  	and a.sql_name like concat('%',#{params.sqlName},'%')
+  	</if>
+  </sql>
+
+
+    <sql id="wheretwo">
+        a.isdelete = 0
+        <if test="params.datasourceId != null and params.datasourceId != ''">
+            and a.datasource_id=#{params.datasourceId}
+        </if>
+        <if test="params.sqlName != null and params.sqlName != ''">
+            and a.sql_name like concat('%',#{params.sqlName},'%')
+        </if>
+        <if test="params.dbName != null and params.dbName != ''">
+            and b.source_name like concat('%',#{params.dbName},'%')
+        </if>
+    </sql>
+  
+</mapper>

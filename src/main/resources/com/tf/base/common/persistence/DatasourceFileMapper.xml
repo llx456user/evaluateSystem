@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.DatasourceFileMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.DatasourceFile" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_version" property="fileVersion" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="index_or_model" property="indexOrModel" jdbcType="INTEGER" />
+    <result column="parent_file" property="parentFile" jdbcType="VARCHAR" />
+    <result column="assess_id" property="assessId" jdbcType="INTEGER" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="file_content" property="fileContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="FileQueryResultMap" type="com.tf.base.datasource.domain.FileQueryResult" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_version" property="fileVersion" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="index_or_model" property="indexOrModel" jdbcType="INTEGER" />
+    <result column="parent_file" property="parentFile" jdbcType="VARCHAR" />
+    <result column="assess_id" property="assessId" jdbcType="INTEGER" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="file_content" property="fileContent" jdbcType="VARCHAR" />
+    <result column="showname" property="showname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, file_name, file_version, create_time, update_uid, update_time, isdelete, index_or_model, 
+    parent_file, assess_id, file_path, file_size, category_id, file_content
+  </sql>
+  
+  <select id="queryCount" parameterType="com.tf.base.datasource.domain.FileParams" resultType="int">
+  	select count(*) from datasource_file a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  </select>
+
+
+  <select id="queryList" parameterType="com.tf.base.datasource.domain.FileParams" resultMap="FileQueryResultMap">
+  	select a.*,b.showname from datasource_file a left join userinfo b on a.update_uid = b.id
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  	order by a.id desc
+  	limit #{start},#{params.rows}
+  </select>
+
+  
+  <sql id="where">
+  	a.isdelete = 0 
+  	and a.category_id=#{params.categoryid}
+  	<if test="params.field != null and params.field != ''">
+  	and (
+  		a.file_name like concat('%',#{params.field},'%')
+  		OR a.file_version like concat('%',#{params.field},'%')
+  		OR a.file_size like concat('%',#{params.field},'%')
+  		OR a.update_time like concat('%',#{params.field},'%')
+  	)
+  	
+  	</if>
+  </sql>
+
+    <select id="queryFileList" parameterType="int" resultMap="BaseResultMap">
+        select * from  datasource_file where  category_id=#{cid} and isdelete=0 order by id desc limit 20
+    </select>
+</mapper>

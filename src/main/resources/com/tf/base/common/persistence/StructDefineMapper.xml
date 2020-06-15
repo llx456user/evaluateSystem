@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.StructDefineMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.StructDefine" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="struct_name" property="structName" jdbcType="VARCHAR" />
+    <result column="struct_remark" property="structRemark" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, category_id, struct_name, struct_remark, create_uid, create_time, update_uid, 
+    update_time, isdelete
+  </sql>
+
+  <select id="queryCount" parameterType="com.tf.base.platform.domain.StructInfoParams" resultType="int">
+    select count(*) from struct_define a
+    <where>
+      <include refid="where"></include>
+    </where>
+  </select>
+
+  <select id="queryListAll"  resultMap="BaseResultMap">
+    select a.* from struct_define a
+    <where>
+      a.isdelete = 0
+    </where>
+    order by id desc
+  </select>
+  
+  <select id="queryList" parameterType="com.tf.base.platform.domain.StructInfoParams" resultMap="BaseResultMap">
+    select a.* from struct_define a
+    <where>
+      <include refid="where"></include>
+    </where>
+    order by id desc
+    limit #{start},#{params.rows}
+  </select>
+  
+  <sql id="where">
+    a.isdelete = 0
+    <if test="params.categoryId != null and params.categoryId != ''">
+      and a.category_id=#{params.categoryId}
+    </if>
+    <if test="params.structName != null and params.structName != ''">
+      and a.struct_name like concat('%',#{params.structName},'%')
+    </if>
+    <if test="params.structRemark != null and params.structRemark != ''">
+      and a.struct_remark like concat('%',#{params.structRemark},'%')
+    </if>
+  </sql>
+
+  <update id="updateIsdelete" parameterType="int">
+   update
+    struct_define
+    set isdelete=1
+    where
+    category_id=#{structCategoryid}
+  </update>
+</mapper>

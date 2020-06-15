@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ProjectInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ProjectInfo" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="project_content" property="projectContent" jdbcType="VARCHAR" />
+    <result column="project_version" property="projectVersion" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    
+    <result column="index_data" property="indexData" jdbcType="VARCHAR" />
+    
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    id, project_name, project_content,project_version, category_id, template_id, index_data,create_uid, create_time, update_uid,
+    update_time, isdelete
+  </sql>
+  
+  <select id="queryCount" parameterType="com.tf.base.project.domain.ProjectInfoParams" resultType="int">
+  	select count(*) from project_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  </select>
+  <select id="queryList" parameterType="com.tf.base.project.domain.ProjectInfoParams" resultMap="BaseResultMap">
+  	select a.* from project_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  	order by id desc
+  	limit #{start},#{params.rows}
+  </select>
+  
+  <sql id="where">
+  	a.isdelete = 0 
+  	<if test="params.categoryId != null and params.categoryId != ''">
+  	and a.category_id=#{params.categoryId}
+  	</if>
+  	<if test="params.projectName != null and params.projectName != ''">
+  	and a.project_name like concat('%',#{params.projectName},'%')
+  	</if>
+  	<if test="params.projectContent != null and params.projectContent != ''">
+  	and a.project_content like concat('%',#{params.projectContent},'%')
+  	</if>
+  </sql>
+  
+  <update id="updateIsdelete" parameterType="int">
+   update  
+    project_info  
+    set isdelete=1 
+    where  
+    category_id=#{categoryId}
+  </update>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ModelInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ModelInfo" >
+    
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model_categoryid" property="modelCategoryid" jdbcType="INTEGER" />
+     <result column="model_status" property="modelStatus" jdbcType="INTEGER" />
+    <result column="model_name" property="modelName" jdbcType="VARCHAR" />
+    <result column="model_version" property="modelVersion" jdbcType="VARCHAR" />
+    <result column="dllname" property="dllname" jdbcType="VARCHAR" />
+    <result column="xmlname" property="xmlname" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+      <result column="is_single_fun" property="isSingleFun" jdbcType="BIT" />
+    <result column="model_content" property="modelContent" jdbcType="VARCHAR" />
+    <result column="dll_path" property="dllPath" jdbcType="VARCHAR" />
+    <result column="xml_path" property="xmlPath" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="QueryResultMap" type="com.tf.base.platform.domain.ModelInfoQueryResult" >
+    
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model_categoryid" property="modelCategoryid" jdbcType="INTEGER" />
+    <result column="model_name" property="modelName" jdbcType="VARCHAR" />
+    <result column="model_status" property="modelStatus" jdbcType="INTEGER" />
+    <result column="model_version" property="modelVersion" jdbcType="VARCHAR" />
+    <result column="dllname" property="dllname" jdbcType="VARCHAR" />
+    <result column="xmlname" property="xmlname" jdbcType="VARCHAR" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+      <result column="is_single_fun" property="isSingleFun" jdbcType="BIT" />
+    
+    <result column="model_content" property="modelContent" jdbcType="VARCHAR" />
+    <result column="dll_path" property="dllPath" jdbcType="VARCHAR" />
+    <result column="xml_path" property="xmlPath" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, model_categoryid, model_name, model_version, dllname, xmlname, create_uid, create_time, 
+    update_uid, update_time, isdelete,model_content, dll_path, xml_path,model_status, is_single_fun
+  </sql>
+  
+   <select id="queryCount" parameterType="com.tf.base.platform.domain.ModelInfoParams" resultType="int">
+  	select count(*) from model_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  </select>
+  <select id="queryList" parameterType="com.tf.base.platform.domain.ModelInfoParams" resultMap="QueryResultMap">
+  	select a.* from model_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  	order by id desc
+  	limit #{start},#{params.rows}
+  </select>
+  
+  <sql id="where">
+  	a.isdelete = 0 
+  	<if test="params.categoryId != null and params.categoryId != '' ">
+  	and a.model_categoryid=#{params.categoryId}
+  	</if>
+  	<if test="params.modelName != null and params.modelName != '' ">
+  	and a.model_name like concat('%',#{params.modelName},'%')
+  	</if>
+  	<if test="params.modelContent != null and params.modelContent != '' ">
+  	and a.model_content like concat('%',#{params.modelContent},'%')
+  	</if>
+  </sql>
+  
+  <update id="updateIsdelete" parameterType="int">
+   update  
+    model_info  
+    set isdelete=1 
+    where  
+    model_categoryid=#{modelCategoryid}
+  </update>
+
+
+  <select id="selectModelByCatId" resultMap="BaseResultMap">
+    select *  from model_info where model_categoryid=#{catId} AND isdelete=0 and model_status=2 order by id desc LIMIT 20
+  </select>
+
+
+
+
+</mapper>

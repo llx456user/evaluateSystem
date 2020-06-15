@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ProjectParamMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ProjectParam" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="param_name" property="paramName" jdbcType="VARCHAR" />
+    <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+    <result column="param_type" property="paramType" jdbcType="VARCHAR" />
+    <result column="data_template_Name" property="dataTemplateName" jdbcType="VARCHAR" />
+    <result column="data_template_number" property="dataTemplateNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, project_id, param_name, param_value, param_type, data_template_number, data_template_Name
+  </sql>
+
+  <select id="count" parameterType="java.lang.Integer" resultType="int">
+    SELECT
+        IFNULL(sum(IFNULL(data_template_number,0)),0)
+    FROM project_param
+    WHERE project_id = #{projectId}
+  </select>
+
+  <select id="list" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List"/>
+    FROM project_param
+    WHERE 1=1
+    AND project_id = #{projectId}
+    AND data_template_number is not null
+  </select>
+
+  <select id="listGroupTemplate" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  SELECT
+  DISTINCT
+  data_template_Name,
+  data_template_number
+  FROM project_param
+  WHERE project_id = #{projectId}
+  and data_template_number is not NULL
+  </select>
+
+  <select id="queryMaxSuitCount" parameterType="java.lang.Integer" resultType="int">
+    SELECT
+    IFNULL(max(data_template_number),0)
+    from project_param
+    WHERE project_id = #{projectId}
+  </select>
+</mapper>

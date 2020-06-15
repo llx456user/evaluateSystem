@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.AssessInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.AssessInfo" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    
+     <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="assess_name" property="assessName" jdbcType="VARCHAR" />
+    <result column="assess_content" property="assessContent" jdbcType="VARCHAR" />
+    <result column="assess_version" property="assessVersion" jdbcType="VARCHAR" />
+    
+    <result column="assess_param" property="assessParam" jdbcType="VARCHAR" />
+    <result column="assess_result" property="assessResult" jdbcType="VARCHAR" />
+    <result column="assess_status" property="assessStatus" jdbcType="INTEGER" />
+    
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_id,index_id,assess_name,assess_content, assess_version, 
+    assess_param,assess_result,assess_status,
+    create_uid, create_time, update_uid, update_time, isdelete
+  </sql>
+  
+  <select id="categoryCount" resultType="String" parameterType="String">
+  	select count(*) from project_info a
+  	<include refid="categoryCountWhere"></include>
+	UNION ALL
+	select count(*) from model_info  a
+	<include refid="categoryCountWhere"></include>
+	UNION ALL
+	select count(*) from index_info a
+	<include refid="categoryCountWhere"></include>
+  </select>
+  <!--<select id="recentAssessCount" resultType="com.tf.base.index.domain.RecentAssessInfo"  parameterType="String">-->
+  	<!--select a.*,b.index_name,b.index_content from assess_info a left join index_info b on b.id = a.index_id-->
+  	<!--<include refid="assessWhere"></include>-->
+  	<!--order by a.update_time desc-->
+	<!--limit 10-->
+  <!--</select>-->
+
+	<select id="recentAssessCount" resultType="com.tf.base.index.domain.RecentProjectInfo"  parameterType="String">
+	select a.assess_name,a.update_time,b.id,b.project_name,b.project_content,b.create_time from assess_info a left join project_info b on b.id = a.project_id
+	<include refid="assessWhere"></include>
+	order by a.update_time desc
+	limit 10
+	</select>
+  
+  <sql id="categoryCountWhere">
+	<where>
+		<if test="userid != null and userid != ''">
+			and a.update_uid=#{userid}
+		</if>
+	</where>
+</sql>
+
+	<sql id="assessWhere">
+		<where>
+			<if test="userid != null and userid != ''">
+				and a.update_uid=#{userid} and a.assess_status=2 and b.isdelete=0
+			</if>
+		</where>
+	</sql>
+  
+  <select id="countProject" resultType="com.tf.base.index.domain.CountInfo">
+  	select count(*) as c,date_format(a.update_time,'%Y-%m') as date from project_info a
+  	<include refid="echartCountWhere"></include> 
+  	GROUP BY  date_format(a.update_time,'%Y-%m')
+  </select>
+  <select id="countModel" resultType="com.tf.base.index.domain.CountInfo">
+  	select count(*) as c,date_format(a.update_time,'%Y-%m') as date from model_info a
+  	<include refid="echartCountWhere"></include> 
+  	GROUP BY  date_format(a.update_time,'%Y-%m')
+  </select>
+  <select id="countIndex" resultType="com.tf.base.index.domain.CountInfo">
+  	select count(*) as c,date_format(a.update_time,'%Y-%m') as date from index_info a
+  	<include refid="echartCountWhere"></include> 
+  	GROUP BY  date_format(a.update_time,'%Y-%m')
+  </select>
+  
+  <sql id="echartCountWhere">
+  	<where>
+  		<if test="userid != null and userid != ''">
+  			and a.update_uid=#{userid}
+  		</if>
+  		<if test="startMonth != null and startMonth != ''">
+  			and date_format(a.update_time,'%Y-%m') >= #{startMonth} 
+  		</if>
+  		<if test="endMonth != null and endMonth != ''">
+  			and date_format(a.update_time,'%Y-%m') &lt;= #{endMonth}
+  		</if>
+  	</where>
+  </sql>
+  
+  
+  
+   <select id="queryCount" parameterType="com.tf.base.project.domain.AssessInfoParams" resultType="int">
+  	select count(*) from assess_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  </select>
+  <select id="queryList" parameterType="com.tf.base.project.domain.AssessInfoParams" resultMap="BaseResultMap">
+  	select a.* from assess_info a
+  	<where>
+  		<include refid="where"></include>
+  	</where>
+  	order by id desc
+  	limit #{start},#{params.rows}
+  </select>
+  
+  <sql id="where">
+  	a.isdelete = 0 and a.assess_status!=0
+  	<if test="params.nodeId != null and params.nodeId != ''">
+  	and a.node_id=#{params.nodeId}
+  	</if>
+  	<if test="params.projectId != null and params.projectId != ''">
+  	and a.project_id=#{params.projectId}
+  	</if>
+  	<if test="params.indexId != null and params.indexId != ''">
+  	  and a.index_id=#{params.indexId}
+  	</if>
+  	<if test="params.assessName != null and params.assessName != ''">
+  	and a.assess_name like concat('%',#{params.assessName},'%')
+  	</if>
+  </sql>
+  
+  <select id="getShowNameByUid" parameterType="int" resultType="String">
+  	select showname from userinfo where id=#{userId}
+  </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.StructParmeterMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.StructParmeter" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="struct_id" property="structId" jdbcType="INTEGER" />
+    <result column="parmeter_name" property="parmeterName" jdbcType="VARCHAR" />
+    <result column="parmeter_unit" property="parmeterUnit" jdbcType="VARCHAR" />
+    <result column="parmeter_unit_ex" property="parmeterUnitEx" jdbcType="VARCHAR" />
+    <result column="parmeter_type" property="parmeterType" jdbcType="VARCHAR" />
+    <result column="is_array" property="isArray" jdbcType="BIT" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    id, struct_id, parmeter_name, parmeter_unit, parmeter_unit_ex, parmeter_type, is_array, 
+    create_uid, create_time, update_uid, update_time, isdelete
+  </sql>
+
+  <select id="queryStructParmeterByStructid" parameterType="com.tf.base.common.domain.StructParmeter" resultMap="BaseResultMap">
+   SELECT * from struct_parmeter t  where struct_id in(SELECT id from struct_define d where d.struct_name=#{structName} and isdelete=0 )  ORDER BY t.id ASC
+  </select>
+</mapper>

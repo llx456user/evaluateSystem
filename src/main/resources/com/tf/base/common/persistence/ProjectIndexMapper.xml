@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tf.base.common.persistence.ProjectIndexMapper" >
+  <resultMap id="BaseResultMap" type="com.tf.base.common.domain.ProjectIndex" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="index_child_id" property="indexChildId" jdbcType="INTEGER" />
+    <result column="index_name" property="indexName" jdbcType="VARCHAR" />
+    <result column="index_status" property="indexStatus" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="index_level" property="indexLevel" jdbcType="INTEGER" />
+     <result column="ahp" property="ahp" jdbcType="VARCHAR" />
+    <result column="index_value" property="indexValue" jdbcType="VARCHAR" />
+    <result column="index_key" property="indexKey" jdbcType="INTEGER" />
+    <result column="index_template_id" property="indexTemplateId" jdbcType="INTEGER" />
+    <result column="create_uid" property="createUid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+     <result column="weight_current" property="weightCurrent" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, project_id, index_id, index_child_id, index_name, index_status, parentid, index_level, ahp,index_value,
+    index_key, index_template_id, create_uid, create_time, update_uid, update_time, isdelete, 
+    remark, weight,weight_current
+  </sql>
+
+  <update id="updateName" parameterType="com.tf.base.project.domain.ProjectIndexParams">
+    update project_index set index_name=#{indexName} where id=#{id}
+  </update>
+  <select id="selectNodetree" parameterType="String" resultType="String">
+  	select weight_current from project_index where project_id=#{params} and isdelete=0;
+  </select>
+</mapper>
