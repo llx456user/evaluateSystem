@@ -19,7 +19,7 @@
         <mysql.version>5.1.18</mysql.version>
         <jstl.version>1.2</jstl.version>
         <javax.validation.version>1.0.0.GA</javax.validation.version>
-        <org.hibernate.version>4.2.0.Final</org.hibernate.version>
+        <org.hibernate.version>5.3.5.Final</org.hibernate.version>
         <javax.servlet-api.version>3.0.1</javax.servlet-api.version>
         <javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
         <org.quartz-scheduler.version>2.2.1</org.quartz-scheduler.version>
